@@ -8,7 +8,7 @@ from clusim.clustering import Clustering
 import clusim.sim as sim
 import matplotlib.pyplot as plt
 
-perms_of_each_n=10 #average of perms_of_each_n for n participants
+count_of_samples_for_each_n=10 #average of count_of_samples_for_each_n for n participants
 perms_of_mantel_test=20#default is 10000
 
 
@@ -131,7 +131,7 @@ def clustering_with_clusim(dis):
 
 def mantel_elsim_r_average_and_errors(some_participants):
     
-    global column_category_label, all_data, cards, total_participants, perms_of_each_n, perms_of_mantel_test
+    global column_category_label, all_data, cards, total_participants, count_of_samples_for_each_n, perms_of_mantel_test
     dis2=dissimilarity_matrix(total_participants)
     
     c2 =clustering_with_clusim(dis2)    
@@ -146,7 +146,7 @@ def mantel_elsim_r_average_and_errors(some_participants):
     elsim_minimum=10 
     elsim_maximum=-10
     
-    for i in range(perms_of_each_n):
+    for i in range(count_of_samples_for_each_n):
         dis1=dissimilarity_matrix(some_participants)
         
         # Mantel Method
@@ -174,11 +174,11 @@ def mantel_elsim_r_average_and_errors(some_participants):
         elsim_SUM = elsim_SUM + elsim_r
         
         
-    mantel_average = mantel_SUM / perms_of_each_n #average of mantel_r
+    mantel_average = mantel_SUM / count_of_samples_for_each_n #average of mantel_r
     mantel_l_error = mantel_average - mantel_minimum #mantel_lower_error
     mantel_u_error = mantel_maximum - mantel_average #mantel_upper_error
 
-    elsim_average = elsim_SUM / perms_of_each_n #average of elsim_r
+    elsim_average = elsim_SUM / count_of_samples_for_each_n #average of elsim_r
     elsim_l_error = elsim_average - elsim_minimum #mantel_lower_error
     elsim_u_error = elsim_maximum - elsim_average #mantel_upper_error
     
