@@ -26,8 +26,8 @@ total_participants=203 #count of all participants
 #participants_range=[0,1,2,3,5,7,10,15,20,25,30]
 #participants_range_for_error_bar=[0,1,2,3,5,7,10,15,20,25,30]
 
-participants_range_for_error_bar=[0,1,2,3,5,7,10,15,20,25,30,35,40,45,50,60, 100, 150, 200, 203]
-participants_range=[0,1,2,3,5,7,10,15,20,25,30,35,40,45,50,60, 100, 150, 200, 203]
+participants_range_for_error_bar=[0,1,2,3,5,7,10,15,20,25,30,35,40,45,50,60]#, 100, 150, 200, 203]
+participants_range=[0,1,2,3,5,7,10,15,20,25,30,35,40,45,50,60]#, 100, 150, 200, 203]
 #participants_range=range(1, total_participants+1)
 
 column_category_label=3 #column 4 in csv (python starts from 0)
@@ -172,7 +172,7 @@ def mantel_elsim_r_average_and_errors(some_participants):
 
     elsim_average = statistics.mean(elsim_r_table) #average of elsim_r
     elsim_l_error = elsim_average - min(elsim_r_table) #mantel_lower_error
-    elsim_u_error = max(elsim_r_table) - max(elsim_r_table) #mantel_upper_error
+    elsim_u_error = max(elsim_r_table) - elsim_average #mantel_upper_error
     elsim_sd=statistics.stdev(elsim_r_table)
 
     
@@ -278,7 +278,11 @@ for i in participants_range:
     if i==0:
         print("participants;", " ", "mantel lower;", " ", "mantel upper;", "mantel sd;", " ", "mantel average;", " ", "elsim lower;", " ", "elsim upper;", " ", "elsim average;", " ", "elsim sd")
         continue
-    print(i,"; ", mantel_r_lower_error_of_each_n[i], "; ", mantel_r_upper_error_of_each_n[i], "; ", mantel_r_sd_of_each_n[i], "; ", mantel_r_average_of_each_n[i], "; ", elsim_r_lower_error_of_each_n[i], "; ", elsim_r_sd_of_each_n[i], "; ", elsim_r_average_of_each_n[i]) 
+    mantel_r_min = mantel_r_average_of_each_n[i] - mantel_r_lower_error_of_each_n[i]
+    mantel_r_max = mantel_r_average_of_each_n[i] + mantel_r_upper_error_of_each_n[i]
+    elsim_r_min = elsim_r_average_of_each_n[i] - elsim_r_lower_error_of_each_n[i]
+    elsim_r_max = elsim_r_average_of_each_n[i] + elsim_r_upper_error_of_each_n[i]
+    print(i,"; ", mantel_r_min, "; ", mantel_r_max, "; ", mantel_r_sd_of_each_n[i], "; ", mantel_r_average_of_each_n[i], "; ", elsim_r_min, "; ", elsim_r_max, "; ", elsim_r_sd_of_each_n[i], "; ", elsim_r_average_of_each_n[i]) 
 
 #copy the printed data in csv
     
