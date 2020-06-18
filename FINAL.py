@@ -7,21 +7,29 @@ from scipy.spatial.distance import squareform
 from clusim.clustering import Clustering
 import clusim.sim as sim
 import matplotlib.pyplot as plt
+import statistics
+
 
 count_of_samples_for_each_n=10 #average of count_of_samples_for_each_n for n participants
-perms_of_mantel_test=20#default is 10000
+perms_of_mantel_test=10#default is 10000
 
 
 
 
-"""
+
 #SKROUTZ
 cards=54 #count of cards
 total_participants=203 #count of all participants
 #participants_range: lists with items the count of participants that we run the test
 #so each of its items is a number from 0 to total_participants
 #the 0 we use it only for the graphp O(0,0)
-participants_range=[0,1,2,3,5,7,10,15,20,25,30,35,40,45,50,60]
+#participants_range=[0,1,2,3,5,7,10,15,20,25,30]
+#participants_range_for_error_bar=[0,1,2,3,5,7,10,15,20,25,30]
+
+participants_range_for_error_bar=[0,1,2,3,5,7,10,15,20,25,30,35,40,45,50,60, 100, 150, 200, 203]
+participants_range=[0,1,2,3,5,7,10,15,20,25,30,35,40,45,50,60, 100, 150, 200, 203]
+#participants_range=range(1, total_participants+1)
+
 column_category_label=3 #column 4 in csv (python starts from 0)
 
 #column 1 of csv: participant_id
@@ -41,12 +49,12 @@ with open(r"skroutz.csv", encoding="utf8") as csvfile:
     reader = csv.reader(csvfile)
     for row in reader: # each row is a list
         all_data.append(row)
+
+        
+        
+
+
 """
-        
-        
-
-
-
 #CELESTINO
 cards=59 #count of cards
 total_participants=210 #count of all participants
@@ -73,7 +81,7 @@ with open(r"celestino.csv", encoding="utf8") as csvfile:
     reader = csv.reader(csvfile)
     for row in reader: # each row is a list
         all_data.append(row)
-
+"""
 
 
 
@@ -137,14 +145,8 @@ def mantel_elsim_r_average_and_errors(some_participants):
     c2 =clustering_with_clusim(dis2)    
     
     
-    mantel_SUM=0
-    elsim_SUM=0
-    # r is between -1 and 1
-    mantel_minimum=10 
-    mantel_maximum=-10
-
-    elsim_minimum=10 
-    elsim_maximum=-10
+    mantel_r_table=[]
+    elsim_r_table=[]
     
     for i in range(count_of_samples_for_each_n):
         dis1=dissimilarity_matrix(some_participants)
@@ -153,36 +155,28 @@ def mantel_elsim_r_average_and_errors(some_participants):
         mantel=Mantel.test(dis1, dis2, perms_of_mantel_test, method='pearson', tail='two-tail')
         mantel_r = mantel[0]
         
-        #find errors (minimum and maximum)
-        if mantel_r < mantel_minimum:
-            mantel_minimum = mantel_r
-        elif mantel_r > mantel_maximum:
-            mantel_maximum = mantel_r
-        mantel_SUM = mantel_SUM + mantel_r
-
+        mantel_r_table.append(mantel_r)
 
         c1 =clustering_with_clusim(dis1)
         
         # Element-centric Similarity
         elsim_r = sim.element_sim(c1, c2, r=1.0, alpha=0.9)
 
-        #find errors (minimum and maximum)
-        if elsim_r < elsim_minimum:
-            elsim_minimum = elsim_r
-        elif elsim_r > elsim_maximum:
-            elsim_maximum = elsim_r
-        elsim_SUM = elsim_SUM + elsim_r
+        elsim_r_table.append(elsim_r)
         
         
-    mantel_average = mantel_SUM / count_of_samples_for_each_n #average of mantel_r
-    mantel_l_error = mantel_average - mantel_minimum #mantel_lower_error
-    mantel_u_error = mantel_maximum - mantel_average #mantel_upper_error
+    mantel_average = statistics.mean(mantel_r_table) #average of mantel_r
+    mantel_l_error = mantel_average - min(mantel_r_table) #mantel_lower_error
+    mantel_u_error = max(mantel_r_table) - mantel_average #mantel_upper_error
+    mantel_sd=statistics.stdev(mantel_r_table)
 
-    elsim_average = elsim_SUM / count_of_samples_for_each_n #average of elsim_r
-    elsim_l_error = elsim_average - elsim_minimum #mantel_lower_error
-    elsim_u_error = elsim_maximum - elsim_average #mantel_upper_error
+    elsim_average = statistics.mean(elsim_r_table) #average of elsim_r
+    elsim_l_error = elsim_average - min(elsim_r_table) #mantel_lower_error
+    elsim_u_error = max(elsim_r_table) - max(elsim_r_table) #mantel_upper_error
+    elsim_sd=statistics.stdev(elsim_r_table)
+
     
-    return mantel_average, mantel_l_error, mantel_u_error, elsim_average, elsim_l_error, elsim_u_error
+    return mantel_average, mantel_l_error, mantel_u_error, mantel_sd, elsim_average, elsim_l_error, elsim_u_error, elsim_sd
 
 
 
@@ -198,19 +192,23 @@ def mantel_elsim_r_average_and_errors_in_participants_range(participants_range):
     mantel_r_average_of_each_n=[]
     mantel_r_lower_error_of_each_n=[]
     mantel_r_upper_error_of_each_n=[]
+    mantel_r_sd_of_each_n=[]
     
     elsim_r_average_of_each_n=[]
     elsim_r_lower_error_of_each_n=[]
     elsim_r_upper_error_of_each_n=[]
+    elsim_r_sd_of_each_n=[]
     
     for y in range(0,total_participants+1):
         mantel_r_average_of_each_n.append(0)
         mantel_r_lower_error_of_each_n.append(0)
         mantel_r_upper_error_of_each_n.append(0)
+        mantel_r_sd_of_each_n.append(0)
         
         elsim_r_average_of_each_n.append(0)
         elsim_r_lower_error_of_each_n.append(0)
         elsim_r_upper_error_of_each_n.append(0)
+        elsim_r_sd_of_each_n.append(0)
         
         
         
@@ -222,24 +220,28 @@ def mantel_elsim_r_average_and_errors_in_participants_range(participants_range):
             mantel_r_average_of_each_n[0]=0
             mantel_r_lower_error_of_each_n[0]=0
             mantel_r_upper_error_of_each_n[0]=0
+            mantel_r_sd_of_each_n[0]=0
             
             elsim_r_average_of_each_n[0]=0
             elsim_r_lower_error_of_each_n[0]=0
             elsim_r_upper_error_of_each_n[0]=0
+            elsim_r_sd_of_each_n[0]=0
         else:
-            mantel_average, mantel_l_error, mantel_u_error, elsim_average, elsim_l_error, elsim_u_error = mantel_elsim_r_average_and_errors(x)
+            mantel_average, mantel_l_error, mantel_u_error, mantel_sd, elsim_average, elsim_l_error, elsim_u_error, elsim_sd = mantel_elsim_r_average_and_errors(x)
             
             #put the values in an array
             mantel_r_average_of_each_n[x]=mantel_average
             mantel_r_lower_error_of_each_n[x]=mantel_l_error
             mantel_r_upper_error_of_each_n[x]=mantel_u_error
+            mantel_r_sd_of_each_n[x]=mantel_sd
 
             elsim_r_average_of_each_n[x]=elsim_average
             elsim_r_lower_error_of_each_n[x]=elsim_l_error
             elsim_r_upper_error_of_each_n[x]=elsim_u_error
+            elsim_r_sd_of_each_n[x]=elsim_sd
             
     #we return the arrays
-    return mantel_r_average_of_each_n, mantel_r_lower_error_of_each_n, mantel_r_upper_error_of_each_n, elsim_r_average_of_each_n, elsim_r_lower_error_of_each_n, elsim_r_upper_error_of_each_n
+    return mantel_r_average_of_each_n, mantel_r_lower_error_of_each_n, mantel_r_upper_error_of_each_n, mantel_r_sd_of_each_n, elsim_r_average_of_each_n, elsim_r_lower_error_of_each_n, elsim_r_upper_error_of_each_n, elsim_r_sd_of_each_n
 
 
 
@@ -269,22 +271,25 @@ def save_errorbar(r_average_of_each_n, r_lower_error_of_each_n, r_upper_error_of
 
 
 
-mantel_r_average_of_each_n, mantel_r_lower_error_of_each_n, mantel_r_upper_error_of_each_n, elsim_r_average_of_each_n, elsim_r_lower_error_of_each_n, elsim_r_upper_error_of_each_n = mantel_elsim_r_average_and_errors_in_participants_range(participants_range)
+mantel_r_average_of_each_n, mantel_r_lower_error_of_each_n, mantel_r_upper_error_of_each_n, mantel_r_sd_of_each_n, elsim_r_average_of_each_n, elsim_r_lower_error_of_each_n, elsim_r_upper_error_of_each_n, elsim_r_sd_of_each_n = mantel_elsim_r_average_and_errors_in_participants_range(participants_range)
 
 i=0
 for i in participants_range:
     if i==0:
-        print("participants;", " ", "mantel;", "", "elsim")
+        print("participants;", " ", "mantel lower;", " ", "mantel upper;", "mantel sd;", " ", "mantel average;", " ", "elsim lower;", " ", "elsim upper;", " ", "elsim average;", " ", "elsim sd")
         continue
-    print(i,"; ", mantel_r_average_of_each_n[i], "; ", elsim_r_average_of_each_n[i]) 
+    print(i,"; ", mantel_r_lower_error_of_each_n[i], "; ", mantel_r_upper_error_of_each_n[i], "; ", mantel_r_sd_of_each_n[i], "; ", mantel_r_average_of_each_n[i], "; ", elsim_r_lower_error_of_each_n[i], "; ", elsim_r_sd_of_each_n[i], "; ", elsim_r_average_of_each_n[i]) 
 
+#copy the printed data in csv
+    
+    
 
 #CASE: 2 graphs together
-save_errorbar(mantel_r_average_of_each_n, mantel_r_lower_error_of_each_n, mantel_r_upper_error_of_each_n, participants_range, "Mantel", "Sample Size", "Average correlation", False, False)
-save_errorbar(elsim_r_average_of_each_n, elsim_r_lower_error_of_each_n, elsim_r_upper_error_of_each_n, participants_range, "Elsim & Mantel Error Bar", "Sample Size", "Average correlation", True, True)
+save_errorbar(mantel_r_average_of_each_n, mantel_r_lower_error_of_each_n, mantel_r_upper_error_of_each_n, participants_range_for_error_bar, "Mantel", "Sample Size", "Average correlation", False, False)
+save_errorbar(elsim_r_average_of_each_n, elsim_r_lower_error_of_each_n, elsim_r_upper_error_of_each_n, participants_range_for_error_bar, "Elsim & Mantel Error Bar", "Sample Size", "Average correlation", True, True)
 
 #CASE: graphs seperately
-save_errorbar(mantel_r_average_of_each_n, mantel_r_lower_error_of_each_n, mantel_r_upper_error_of_each_n, participants_range, "Mantel Error Bar", "Sample Size", "Average correlation", True, True)
-save_errorbar(elsim_r_average_of_each_n, elsim_r_lower_error_of_each_n, elsim_r_upper_error_of_each_n, participants_range, "Elsim Error Bar", "Sample Size", "Average correlation", True, True)
+save_errorbar(mantel_r_average_of_each_n, mantel_r_lower_error_of_each_n, mantel_r_upper_error_of_each_n, participants_range_for_error_bar, "Mantel Error Bar", "Sample Size", "Average correlation", True, True)
+save_errorbar(elsim_r_average_of_each_n, elsim_r_lower_error_of_each_n, elsim_r_upper_error_of_each_n, participants_range_for_error_bar, "Elsim Error Bar", "Sample Size", "Average correlation", True, True)
 
 
