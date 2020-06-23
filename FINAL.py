@@ -51,8 +51,6 @@ with open(r"skroutz.csv", encoding="utf8") as csvfile:
         all_data.append(row)
 
         
-        
-
 
 """
 #CELESTINO
@@ -84,10 +82,52 @@ with open(r"celestino.csv", encoding="utf8") as csvfile:
 """
 
 
+"""
+#travelsite1
+cards=50 #count of cards
+total_participants=258 #count of all participants
+#participants_range: lists with items the count of participants that we run the test
+#so each of its items is a number from 0 to total_participants
+#the 0 we use it only for the graph O(0,0)
+participants_range=[0,1,2,3,5,7,10,15,20,25,30,35,40,45,50,60,100,150,200,258]
+column_category_label=3 #column 4 in csv (python starts from 0)
+
+#column 1 of csv: participant_id
+#column 2 of csv: card_index
+#column 3 of csv: card_label
+#column 4 of csv: category_label
+
+#the row data of csv is sorted firstly by participant_id and secondly by card_index
+all_data = []
+with open(r"travelsite1.csv", encoding="utf8") as csvfile:
+    reader = csv.reader(csvfile)
+    for row in reader: # each row is a list
+        all_data.append(row)
+"""
 
 
+"""
+#travelsite2
+cards=40 #count of cards
+total_participants=256 #count of all participants
+#participants_range: lists with items the count of participants that we run the test
+#so each of its items is a number from 0 to total_participants
+#the 0 we use it only for the graph O(0,0)
+participants_range=[0,1,2,3,5,7,10,15,20,25,30,35,40,45,50,60,100,150,200,256]
+column_category_label=3 #column 4 in csv (python starts from 0)
 
+#column 1 of csv: participant_id
+#column 2 of csv: card_index
+#column 3 of csv: card_label
+#column 4 of csv: category_label
 
+#the row data of csv is sorted firstly by participant_id and secondly by card_index
+all_data = []
+with open(r"travelsite2.csv", encoding="utf8") as csvfile:
+    reader = csv.reader(csvfile)
+    for row in reader: # each row is a list
+        all_data.append(row)
+"""
 
 def dissimilarity_matrix(some_participants):
     
