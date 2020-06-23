@@ -12,7 +12,8 @@ import statistics
 
 count_of_samples_for_each_n=10 #average of count_of_samples_for_each_n for n participants
 perms_of_mantel_test=10#default is 10000
-
+plt_ylim_min=0.6
+plt_xticks=np.arange(0, 71, 5)
 
 
 
@@ -289,7 +290,7 @@ def mantel_elsim_r_average_and_errors_in_participants_range(participants_range):
 
 
 def save_errorbar(r_average_of_each_n, r_lower_error_of_each_n, r_upper_error_of_each_n,  participants_range, title, xlabel, ylabel, save, clear):
-    global total_participants
+    global total_participants, plt_ylim_min, plt_xticks
     
     x=[np.array(range(0,total_participants+1))[i] for i in participants_range] 
     y=[r_average_of_each_n[i] for i in participants_range]
@@ -301,8 +302,11 @@ def save_errorbar(r_average_of_each_n, r_lower_error_of_each_n, r_upper_error_of
     plt.errorbar(x, y, yerr=asymmetric_error)
     plt.title(title)
     plt.xlabel(xlabel)
-
     plt.ylabel(ylabel)
+   
+    plt.ylim(plt_ylim_min, 1)
+    plt.xticks(plt_xticks)
+    
     if save==True:
         plt.savefig(title+".png",dpi=300)
     if clear==True:
