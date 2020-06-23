@@ -24,12 +24,9 @@ total_participants=203 #count of all participants
 #participants_range: lists with items the count of participants that we run the test
 #so each of its items is a number from 0 to total_participants
 #the 0 we use it only for the graphp O(0,0)
-#participants_range=[0,1,2,3,5,7,10,15,20,25,30]
-#participants_range_for_error_bar=[0,1,2,3,5,7,10,15,20,25,30]
 
-participants_range_for_error_bar=[0,1,2,3,5,7,10,15,20,25,30,35,40,45,50,60]#, 100, 150, 200, 203]
-participants_range=[0,1,2,3,5,7,10,15,20,25,30,35,40,45,50,60]#, 100, 150, 200, 203]
-#participants_range=range(1, total_participants+1)
+participants_range_for_error_bar=[0, 2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
+participants_range=range(0, total_participants+1)
 
 column_category_label=3 #column 4 in csv (python starts from 0)
 
@@ -60,7 +57,9 @@ total_participants=210 #count of all participants
 #participants_range: lists with items the count of participants that we run the test
 #so each of its items is a number from 0 to total_participants
 #the 0 we use it only for the graph O(0,0)
-participants_range=[0,1,2,3,5,7,10,15,20,25,30,35,40,45,50,60]
+participants_range=range(0, total_participants+1)
+participants_range_for_error_bar=[0, 2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
+
 column_category_label=3 #column 4 in csv (python starts from 0)
 
 #column 1 of csv: participant_id
@@ -90,7 +89,9 @@ total_participants=258 #count of all participants
 #participants_range: lists with items the count of participants that we run the test
 #so each of its items is a number from 0 to total_participants
 #the 0 we use it only for the graph O(0,0)
-participants_range=[0,1,2,3,5,7,10,15,20,25,30,35,40,45,50,60,100,150,200,258]
+participants_range=range(0, total_participants+1)
+participants_range_for_error_bar=[0, 2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
+
 column_category_label=3 #column 4 in csv (python starts from 0)
 
 #column 1 of csv: participant_id
@@ -114,7 +115,9 @@ total_participants=256 #count of all participants
 #participants_range: lists with items the count of participants that we run the test
 #so each of its items is a number from 0 to total_participants
 #the 0 we use it only for the graph O(0,0)
-participants_range=[0,1,2,3,5,7,10,15,20,25,30,35,40,45,50,60,100,150,200,256]
+participants_range=range(0, total_participants+1)
+participants_range_for_error_bar=[0, 2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
+
 column_category_label=3 #column 4 in csv (python starts from 0)
 
 #column 1 of csv: participant_id
