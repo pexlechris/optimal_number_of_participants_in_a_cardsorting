@@ -12,7 +12,7 @@ import statistics
 
 count_of_samples_for_each_n=10 #average of count_of_samples_for_each_n for n participants
 perms_of_mantel_test=10#default is 10000
-plt_ylim_min=0.6
+plt_ylim_min=0.3
 plt_xticks=np.arange(0, 71, 5)
 
 
@@ -302,7 +302,7 @@ def save_errorbar(r_average_of_each_n, r_lower_error_of_each_n, r_upper_error_of
     upper_error = [r_upper_error_of_each_n[i] for i in participants_range]
     asymmetric_error = [lower_error, upper_error]
     
-    plt.errorbar(x, y, yerr=asymmetric_error)
+    plt.errorbar(x, y, yerr=asymmetric_error, capsize=4)
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
