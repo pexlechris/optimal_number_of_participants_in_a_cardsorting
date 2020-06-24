@@ -22,11 +22,10 @@ plt_xticks=np.arange(0, 71, 5)
 cards=54 #count of cards
 total_participants=203 #count of all participants
 #participants_range: lists with items the count of participants that we run the test
-#so each of its items is a number from 0 to total_participants
-#the 0 we use it only for the graphp O(0,0)
+#so each of its items is a number from 1 to total_participants
 
-participants_range_for_error_bar=[0, 2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
-participants_range=range(0, total_participants+1)
+participants_range_for_error_bar=[2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
+participants_range=range(1, total_participants+1)
 
 column_category_label=3 #column 4 in csv (python starts from 0)
 
@@ -57,8 +56,8 @@ total_participants=210 #count of all participants
 #participants_range: lists with items the count of participants that we run the test
 #so each of its items is a number from 0 to total_participants
 #the 0 we use it only for the graph O(0,0)
-participants_range=range(0, total_participants+1)
-participants_range_for_error_bar=[0, 2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
+participants_range=range(1, total_participants+1)
+participants_range_for_error_bar=[2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
 
 column_category_label=3 #column 4 in csv (python starts from 0)
 
@@ -89,8 +88,8 @@ total_participants=258 #count of all participants
 #participants_range: lists with items the count of participants that we run the test
 #so each of its items is a number from 0 to total_participants
 #the 0 we use it only for the graph O(0,0)
-participants_range=range(0, total_participants+1)
-participants_range_for_error_bar=[0, 2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
+participants_range=range(1, total_participants+1)
+participants_range_for_error_bar=[2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
 
 column_category_label=3 #column 4 in csv (python starts from 0)
 
@@ -115,8 +114,8 @@ total_participants=256 #count of all participants
 #participants_range: lists with items the count of participants that we run the test
 #so each of its items is a number from 0 to total_participants
 #the 0 we use it only for the graph O(0,0)
-participants_range=range(0, total_participants+1)
-participants_range_for_error_bar=[0, 2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
+participants_range=range(1, total_participants+1)
+participants_range_for_error_bar=[2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
 
 column_category_label=3 #column 4 in csv (python starts from 0)
 
@@ -320,11 +319,8 @@ def save_errorbar(r_average_of_each_n, r_lower_error_of_each_n, r_upper_error_of
 
 mantel_r_average_of_each_n, mantel_r_lower_error_of_each_n, mantel_r_upper_error_of_each_n, mantel_r_sd_of_each_n, elsim_r_average_of_each_n, elsim_r_lower_error_of_each_n, elsim_r_upper_error_of_each_n, elsim_r_sd_of_each_n = mantel_elsim_r_average_and_errors_in_participants_range(participants_range)
 
-i=0
+print("participants;", " ", "mantel lower;", " ", "mantel upper;", "mantel sd;", " ", "mantel average;", " ", "elsim lower;", " ", "elsim upper;", " ", "elsim average;", " ", "elsim sd")
 for i in participants_range:
-    if i==0:
-        print("participants;", " ", "mantel lower;", " ", "mantel upper;", "mantel sd;", " ", "mantel average;", " ", "elsim lower;", " ", "elsim upper;", " ", "elsim average;", " ", "elsim sd")
-        continue
     mantel_r_min = mantel_r_average_of_each_n[i] - mantel_r_lower_error_of_each_n[i]
     mantel_r_max = mantel_r_average_of_each_n[i] + mantel_r_upper_error_of_each_n[i]
     elsim_r_min = elsim_r_average_of_each_n[i] - elsim_r_lower_error_of_each_n[i]
