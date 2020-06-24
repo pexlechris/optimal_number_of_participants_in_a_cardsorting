@@ -321,6 +321,8 @@ mantel_r_average_of_each_n, mantel_r_lower_error_of_each_n, mantel_r_upper_error
 
 print("participants;", " ", "mantel lower;", " ", "mantel upper;", "mantel sd;", " ", "mantel average;", " ", "elsim lower;", " ", "elsim upper;", " ", "elsim average;", " ", "elsim sd")
 for i in participants_range:
+    if i==0:
+        continue
     mantel_r_min = mantel_r_average_of_each_n[i] - mantel_r_lower_error_of_each_n[i]
     mantel_r_max = mantel_r_average_of_each_n[i] + mantel_r_upper_error_of_each_n[i]
     elsim_r_min = elsim_r_average_of_each_n[i] - elsim_r_lower_error_of_each_n[i]
