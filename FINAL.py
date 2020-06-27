@@ -11,7 +11,7 @@ import statistics
 
 
 count_of_samples_for_each_n=10 #average of count_of_samples_for_each_n for n participants
-perms_of_mantel_test=10#default is 10000
+perms_of_mantel_test=10000#default is 10000
 plt_ylim_min=0.3
 plt_xticks=np.arange(0, 71, 5)
 
