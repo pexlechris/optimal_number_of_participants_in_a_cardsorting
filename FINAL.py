@@ -10,37 +10,37 @@ import matplotlib.pyplot as plt
 import statistics
 
 
-count_of_samples_for_each_n=10 #average of count_of_samples_for_each_n for n participants
-perms_of_mantel_test=10000#default is 10000
+count_of_samples_for_each_n=10 # Average of count_of_samples_for_each_n for n participants
+perms_of_mantel_test=10000 # Default is 10000
 plt_ylim_min=0.3
 plt_xticks=np.arange(0, 71, 5)
 
 
 
 
-#SKROUTZ
-cards=54 #count of cards
-total_participants=203 #count of all participants
-#participants_range: lists with items the count of participants that we run the test
-#so each of its items is a number from 1 to total_participants
+# SKROUTZ
+cards=54 # Count of cards
+total_participants=203 # Count of all participants
+# participants_range: A list with items that are selected every time from the total number of participants, in order the code to be executed
+# Each of its items is a number from 1 to total_participants and is not repeated
 
 participants_range_for_error_bar=[2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
 participants_range=range(1, total_participants+1)
 
-column_category_label=3 #column 4 in csv (python starts from 0)
+column_category_label=3 # Column 4 in csv (python starts from 0)
 
-#column 1 of csv: participant_id
-#column 2 of csv: card_index
-#column 3 of csv: card_label
-#column 4 of csv: category_label
-#column 5 of csv: participant_sex
-#column 6 of csv: participant_age
-#column 7 of csv: participant_time_in_internet
-#column 8 of csv: participant_previous_experience_at_eshop_domain
-#column 9 of csv: difficult_cards
-#column 10 of csv: how_dificult_was_the_procedure
+# Column 1 of csv: participant_id
+# Column 2 of csv: card_index
+# Column 3 of csv: card_label
+# Column 4 of csv: category_label
+# Column 5 of csv: participant_sex
+# Column 6 of csv: participant_age
+# Column 7 of csv: participant_time_in_internet
+# Column 8 of csv: participant_previous_experience_at_eshop_domain
+# Column 9 of csv: difficult_cards
+# Column 10 of csv: how_dificult_was_the_procedure
 
-#the row data of csv is sorted firstly by participant_id and secondly by card_index
+# The row data of csv is sorted firstly by participant_id and secondly by card_index
 all_data = []
 with open(r"skroutz.csv", encoding="utf8") as csvfile:
     reader = csv.reader(csvfile)
@@ -50,29 +50,29 @@ with open(r"skroutz.csv", encoding="utf8") as csvfile:
         
 
 """
-#CELESTINO
-cards=59 #count of cards
-total_participants=210 #count of all participants
-#participants_range: lists with items the count of participants that we run the test
-#so each of its items is a number from 0 to total_participants
-#the 0 we use it only for the graph O(0,0)
+# CELESTINO
+cards=59 # Count of cards
+total_participants=210 # Count of all participants
+# participants_range: A list with items that are selected every time from the total number of participants, in order the code to be executed
+# Each of its items is a number from 1 to total_participants and is not repeated
+# The 0 we use it only for the graph O(0,0)
 participants_range=range(1, total_participants+1)
 participants_range_for_error_bar=[2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
 
-column_category_label=3 #column 4 in csv (python starts from 0)
+column_category_label=3 # Column 4 in csv (python starts from 0)
 
-#column 1 of csv: participant_id
-#column 2 of csv: card_index
-#column 3 of csv: card_label
-#column 4 of csv: category_label
-#column 5 of csv: participant_sex
-#column 6 of csv: participant_age
-#column 7 of csv: participant_time_in_internet
-#column 8 of csv: participant_previous_experience_at_eshop_domain
-#column 9 of csv: difficult_cards
-#column 10 of csv: how_dificult_was_the_procedure
+# Column 1 of csv: participant_id
+# Column 2 of csv: card_index
+# Column 3 of csv: card_label
+# Column 4 of csv: category_label
+# Column 5 of csv: participant_sex
+# Column 6 of csv: participant_age
+# Column 7 of csv: participant_time_in_internet
+# Column 8 of csv: participant_previous_experience_at_eshop_domain
+# Column 9 of csv: difficult_cards
+# Column 10 of csv: how_dificult_was_the_procedure
 
-#the row data of csv is sorted firstly by participant_id and secondly by card_index
+# The row data of csv is sorted firstly by participant_id and secondly by card_index
 all_data = []
 with open(r"celestino.csv", encoding="utf8") as csvfile:
     reader = csv.reader(csvfile)
@@ -82,23 +82,23 @@ with open(r"celestino.csv", encoding="utf8") as csvfile:
 
 
 """
-#travelsite1
-cards=50 #count of cards
-total_participants=258 #count of all participants
-#participants_range: lists with items the count of participants that we run the test
-#so each of its items is a number from 0 to total_participants
-#the 0 we use it only for the graph O(0,0)
+# travelsite1
+cards=50 # Count of cards
+total_participants=258 # Count of all participants
+# participants_range: A list with items that are selected every time from the total number of participants, in order the code to be executed
+# Each of its items is a number from 1 to total_participants and is not repeated
+# The 0 we use it only for the graph O(0,0)
 participants_range=range(1, total_participants+1)
 participants_range_for_error_bar=[2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
 
-column_category_label=3 #column 4 in csv (python starts from 0)
+column_category_label=3 # Column 4 in csv (python starts from 0)
 
-#column 1 of csv: participant_id
-#column 2 of csv: card_index
-#column 3 of csv: card_label
-#column 4 of csv: category_label
+# Column 1 of csv: participant_id
+# Column 2 of csv: card_index
+# Column 3 of csv: card_label
+# Column 4 of csv: category_label
 
-#the row data of csv is sorted firstly by participant_id and secondly by card_index
+#T he row data of csv is sorted firstly by participant_id and secondly by card_index
 all_data = []
 with open(r"travelsite1.csv", encoding="utf8") as csvfile:
     reader = csv.reader(csvfile)
@@ -108,23 +108,23 @@ with open(r"travelsite1.csv", encoding="utf8") as csvfile:
 
 
 """
-#travelsite2
-cards=40 #count of cards
-total_participants=256 #count of all participants
-#participants_range: lists with items the count of participants that we run the test
-#so each of its items is a number from 0 to total_participants
-#the 0 we use it only for the graph O(0,0)
+# travelsite2
+cards=40 # Count of cards
+total_participants=256 # Count of all participants
+# participants_range: A list with items that are selected every time from the total number of participants, in order the code to be executed
+# Each of its items is a number from 1 to total_participants and is not repeated
+# The 0 we use it only for the graph O(0,0)
 participants_range=range(1, total_participants+1)
 participants_range_for_error_bar=[2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
 
-column_category_label=3 #column 4 in csv (python starts from 0)
+column_category_label=3 # Column 4 in csv (python starts from 0)
 
-#column 1 of csv: participant_id
-#column 2 of csv: card_index
-#column 3 of csv: card_label
-#column 4 of csv: category_label
+# Column 1 of csv: participant_id
+# Column 2 of csv: card_index
+# Column 3 of csv: card_label
+# Column 4 of csv: category_label
 
-#the row data of csv is sorted firstly by participant_id and secondly by card_index
+# The row data of csv is sorted firstly by participant_id and secondly by card_index
 all_data = []
 with open(r"travelsite2.csv", encoding="utf8") as csvfile:
     reader = csv.reader(csvfile)
@@ -136,30 +136,30 @@ def dissimilarity_matrix(some_participants):
     
     global column_category_label, all_data, cards, total_participants
     
-    #participants_range: lists with items the count of participants that we run the test
-    #so each of its items is a number from 0 to total_participants-1 (python starts counting from 0)
-    #with random.sample we take UNIQUE numbers from the list in the first parameter of sample method
-    #examples of random.sample() here: https://www.geeksforgeeks.org/python-random-sample-function
+    # participants_range: A list with items that are selected every time from the total number of participants, in order the code to be executed
+    # Each of its items is a number from 1 to total_participants and is not repeated (python starts counting from 0)
+    # With random.sample, UNIQUE numbers are taken from the list in the first parameter of sample method
+    # Examples of random.sample() can be found here: https://www.geeksforgeeks.org/python-random-sample-function
     participants_range=random.sample(range(0, total_participants), some_participants)
     
-    #Initialize the dissimilarity matrix with zeros
-    #The elements of the main diagonal will be always 0
+    # Initialization of the dissimilarity matrix with zeros
+    # The elements of the main diagonal will be always zero
     dissimilarity_matrix = [[0 for x in range(cards)] for y in range(cards)]
     
     for participant in participants_range:
-        for x in range(participant*cards, (participant+1)*cards): #take cards/rows only form current participant
+        for x in range(participant*cards, (participant+1)*cards): # Take cards/rows only form current participant
             
-            for y in range(x+1,(participant+1)*cards):#Because the dissimilarity_matrix is symmetrical, we start the itteration form x+1 
+            for y in range(x+1,(participant+1)*cards):# Because the dissimilarity_matrix is a symmetric matrix, the itteration is started form x+1 
                 
-                #if the cards have been sorted in differents groups from the current user
+                # If the cards have been sorted in differents groups from the current user
                 if all_data[x][column_category_label]!=all_data[y][column_category_label]: 
                     
-                    #We compare x-participant*cards and y-participant*cards in this itteration
+                    # x-participant*cards and y-participant*cards are compared in this itteration
                     # x-participant*cards is the card_index (0, 1, ... , cards-1) of the 1st compared card from participant
                     # y-participant*cards is the card_index (0, 1, ... , cards-1) of the 2nd compared card from participant                    
                     dissimilarity_matrix[x-participant*cards][y-participant*cards]=dissimilarity_matrix[x-participant*cards][y-participant*cards]+1
                     
-                    #With the following line, we make the matrix symmetrical
+                    # With the following line, it is converted to a symmetric matrix
                     dissimilarity_matrix[y-participant*cards][x-participant*cards]=dissimilarity_matrix[x-participant*cards][y-participant*cards]
 
     return dissimilarity_matrix
@@ -208,14 +208,14 @@ def mantel_elsim_r_average_and_errors(some_participants):
         elsim_r_table.append(elsim_r)
         
         
-    mantel_average = statistics.mean(mantel_r_table) #average of mantel_r
-    mantel_l_error = mantel_average - min(mantel_r_table) #mantel_lower_error
-    mantel_u_error = max(mantel_r_table) - mantel_average #mantel_upper_error
+    mantel_average = statistics.mean(mantel_r_table) # average of mantel_r
+    mantel_l_error = mantel_average - min(mantel_r_table) # mantel_lower_error
+    mantel_u_error = max(mantel_r_table) - mantel_average # mantel_upper_error
     mantel_sd=statistics.stdev(mantel_r_table)
 
-    elsim_average = statistics.mean(elsim_r_table) #average of elsim_r
-    elsim_l_error = elsim_average - min(elsim_r_table) #mantel_lower_error
-    elsim_u_error = max(elsim_r_table) - elsim_average #mantel_upper_error
+    elsim_average = statistics.mean(elsim_r_table) # average of elsim_r
+    elsim_l_error = elsim_average - min(elsim_r_table) # mantel_lower_error
+    elsim_u_error = max(elsim_r_table) - elsim_average # mantel_upper_error
     elsim_sd=statistics.stdev(elsim_r_table)
 
     
@@ -230,7 +230,7 @@ def mantel_elsim_r_average_and_errors_in_participants_range(participants_range):
     
     global total_participants
     
-    #Initialization with zeros
+    # Initialization with zeros
     
     mantel_r_average_of_each_n=[]
     mantel_r_lower_error_of_each_n=[]
@@ -272,7 +272,7 @@ def mantel_elsim_r_average_and_errors_in_participants_range(participants_range):
         else:
             mantel_average, mantel_l_error, mantel_u_error, mantel_sd, elsim_average, elsim_l_error, elsim_u_error, elsim_sd = mantel_elsim_r_average_and_errors(x)
             
-            #put the values in an array
+            # Put the values in an array
             mantel_r_average_of_each_n[x]=mantel_average
             mantel_r_lower_error_of_each_n[x]=mantel_l_error
             mantel_r_upper_error_of_each_n[x]=mantel_u_error
@@ -283,7 +283,7 @@ def mantel_elsim_r_average_and_errors_in_participants_range(participants_range):
             elsim_r_upper_error_of_each_n[x]=elsim_u_error
             elsim_r_sd_of_each_n[x]=elsim_sd
             
-    #we return the arrays
+    # Return of the arrays
     return mantel_r_average_of_each_n, mantel_r_lower_error_of_each_n, mantel_r_upper_error_of_each_n, mantel_r_sd_of_each_n, elsim_r_average_of_each_n, elsim_r_lower_error_of_each_n, elsim_r_upper_error_of_each_n, elsim_r_sd_of_each_n
 
 
@@ -329,15 +329,15 @@ for i in participants_range:
     elsim_r_max = elsim_r_average_of_each_n[i] + elsim_r_upper_error_of_each_n[i]
     print(i,"; ", mantel_r_min, "; ", mantel_r_max, "; ", mantel_r_sd_of_each_n[i], "; ", mantel_r_average_of_each_n[i], "; ", elsim_r_min, "; ", elsim_r_max, "; ", elsim_r_sd_of_each_n[i], "; ", elsim_r_average_of_each_n[i]) 
 
-#copy the printed data in csv
+# Copy the printed data with the results in csv file
     
     
 
-#CASE: 2 graphs together
+# CASE1: Showing of both plots in one figure
 save_errorbar(mantel_r_average_of_each_n, mantel_r_lower_error_of_each_n, mantel_r_upper_error_of_each_n, participants_range_for_error_bar, "Mantel", "Sample Size", "Average correlation", False, False)
 save_errorbar(elsim_r_average_of_each_n, elsim_r_lower_error_of_each_n, elsim_r_upper_error_of_each_n, participants_range_for_error_bar, "Elsim & Mantel Error Bar", "Sample Size", "Average correlation", True, True)
 
-#CASE: graphs seperately
+# CASE2: Showing plots in different figures
 save_errorbar(mantel_r_average_of_each_n, mantel_r_lower_error_of_each_n, mantel_r_upper_error_of_each_n, participants_range_for_error_bar, "Mantel Error Bar", "Sample Size", "Average correlation", True, True)
 save_errorbar(elsim_r_average_of_each_n, elsim_r_lower_error_of_each_n, elsim_r_upper_error_of_each_n, participants_range_for_error_bar, "Elsim Error Bar", "Sample Size", "Average correlation", True, True)
 
