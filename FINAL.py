@@ -1,3 +1,5 @@
+#ATTENTION: This code needs 1 hour approximately to be executed!
+
 import csv
 import random
 import Mantel # https://jwcarr.github.io/MantelTest/
