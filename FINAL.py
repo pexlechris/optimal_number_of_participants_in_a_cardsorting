@@ -21,11 +21,13 @@ plt_xticks=np.arange(0, 71, 5)
 # SKROUTZ
 cards=54 # Count of cards
 total_participants=203 # Count of all participants
+
 # participants_range: A list with items that are selected every time from the total number of participants, in order the code to be executed
 # Each of its items is a number from 1 to total_participants and is not repeated
-
-participants_range_for_error_bar=[2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
 participants_range=range(1, total_participants+1)
+
+# participants_range_for_error_bar: A list with items that are selected every time from the total number of participants φor creation of the error bars
+participants_range_for_error_bar=[2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
 
 column_category_label=3 # Column 4 in csv (python starts from 0)
 
@@ -53,10 +55,12 @@ with open(r"skroutz.csv", encoding="utf8") as csvfile:
 # CELESTINO
 cards=59 # Count of cards
 total_participants=210 # Count of all participants
+
 # participants_range: A list with items that are selected every time from the total number of participants, in order the code to be executed
 # Each of its items is a number from 1 to total_participants and is not repeated
-# The 0 we use it only for the graph O(0,0)
 participants_range=range(1, total_participants+1)
+
+# participants_range_for_error_bar: A list with items that are selected every time from the total number of participants φor creation of the error bars
 participants_range_for_error_bar=[2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
 
 column_category_label=3 # Column 4 in csv (python starts from 0)
@@ -85,10 +89,12 @@ with open(r"celestino.csv", encoding="utf8") as csvfile:
 # travelsite1
 cards=50 # Count of cards
 total_participants=258 # Count of all participants
+
 # participants_range: A list with items that are selected every time from the total number of participants, in order the code to be executed
 # Each of its items is a number from 1 to total_participants and is not repeated
-# The 0 we use it only for the graph O(0,0)
 participants_range=range(1, total_participants+1)
+
+# participants_range_for_error_bar: A list with items that are selected every time from the total number of participants φor creation of the error bars
 participants_range_for_error_bar=[2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
 
 column_category_label=3 # Column 4 in csv (python starts from 0)
@@ -111,10 +117,12 @@ with open(r"travelsite1.csv", encoding="utf8") as csvfile:
 # travelsite2
 cards=40 # Count of cards
 total_participants=256 # Count of all participants
+
 # participants_range: A list with items that are selected every time from the total number of participants, in order the code to be executed
 # Each of its items is a number from 1 to total_participants and is not repeated
-# The 0 we use it only for the graph O(0,0)
 participants_range=range(1, total_participants+1)
+
+# participants_range_for_error_bar: A list with items that are selected every time from the total number of participants φor creation of the error bars
 participants_range_for_error_bar=[2, 5, 8, 12, 15, 20, 30, 40, 50, 60, 70]
 
 column_category_label=3 # Column 4 in csv (python starts from 0)
