@@ -329,7 +329,7 @@ def save_errorbar(r_average_of_each_n, r_lower_error_of_each_n, r_upper_error_of
 
 mantel_r_average_of_each_n, mantel_r_lower_error_of_each_n, mantel_r_upper_error_of_each_n, mantel_r_sd_of_each_n, elsim_r_average_of_each_n, elsim_r_lower_error_of_each_n, elsim_r_upper_error_of_each_n, elsim_r_sd_of_each_n = mantel_elsim_r_average_and_errors_in_participants_range(participants_range)
 
-print("participants;", " ", "mantel lower;", " ", "mantel upper;", "mantel sd;", " ", "mantel average;", " ", "elsim lower;", " ", "elsim upper;", " ", "elsim average;", " ", "elsim sd")
+print("participants;", " ", "mantel lower;", " ", "mantel upper;", "mantel sd;", " ", "mantel average;", " ", "elsim lower;", " ", "elsim upper;", " ", "elsim sd;", " ", "elsim average")
 for i in participants_range:
     if i==0:
         continue
