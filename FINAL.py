@@ -307,7 +307,10 @@ def save_errorbar(r_average_of_each_n, r_sd_of_each_n,  participants_range, titl
     
     x=[np.array(range(0,total_participants+1))[i] for i in participants_range] 
     y=[r_average_of_each_n[i] for i in participants_range]
-    
+
+    #Why we choose 2*(standard error) to calculate error bars
+    #2*r_sd_of_each_n[i]/sqrt(count_of_samples_for_each_n): https://www.spss-tutorials.com/confidence-intervals/
+
     lower_error = [2*r_sd_of_each_n[i]/math.sqrt(count_of_samples_for_each_n) for i in participants_range] 
     upper_error = [2*r_sd_of_each_n[i]/math.sqrt(count_of_samples_for_each_n) for i in participants_range]
     asymmetric_error = [lower_error, upper_error]
