@@ -10,6 +10,7 @@ from clusim.clustering import Clustering
 import clusim.sim as sim
 import matplotlib.pyplot as plt
 import statistics
+import math
 
 
 count_of_samples_for_each_n=10 # Average of count_of_samples_for_each_n for n participants
@@ -301,14 +302,14 @@ def mantel_elsim_r_average_and_errors_in_participants_range(participants_range):
 
 
 
-def save_errorbar(r_average_of_each_n, r_lower_error_of_each_n, r_upper_error_of_each_n,  participants_range, title, xlabel, ylabel, save, clear):
+def save_errorbar(r_average_of_each_n, r_sd_of_each_n,  participants_range, title, xlabel, ylabel, save, clear):
     global total_participants, plt_ylim_min, plt_xticks
     
     x=[np.array(range(0,total_participants+1))[i] for i in participants_range] 
     y=[r_average_of_each_n[i] for i in participants_range]
     
-    lower_error = [r_lower_error_of_each_n[i] for i in participants_range] 
-    upper_error = [r_upper_error_of_each_n[i] for i in participants_range]
+    lower_error = [2*r_sd_of_each_n[i]/math.sqrt(count_of_samples_for_each_n) for i in participants_range] 
+    upper_error = [2*r_sd_of_each_n[i]/math.sqrt(count_of_samples_for_each_n) for i in participants_range]
     asymmetric_error = [lower_error, upper_error]
     
     plt.errorbar(x, y, yerr=asymmetric_error, capsize=4)
@@ -344,11 +345,11 @@ for i in participants_range:
     
 
 # CASE1: Showing of both plots in one figure
-save_errorbar(mantel_r_average_of_each_n, mantel_r_lower_error_of_each_n, mantel_r_upper_error_of_each_n, participants_range_for_error_bar, "Mantel", "Sample Size", "Average correlation", False, False)
-save_errorbar(elsim_r_average_of_each_n, elsim_r_lower_error_of_each_n, elsim_r_upper_error_of_each_n, participants_range_for_error_bar, "Elsim & Mantel Error Bar", "Sample Size", "Average correlation", True, True)
+save_errorbar(mantel_r_average_of_each_n, mantel_r_sd_of_each_n, participants_range_for_error_bar, "Mantel", "Sample Size", "Average correlation", False, False)
+save_errorbar(elsim_r_average_of_each_n, elsim_r_sd_of_each_n, participants_range_for_error_bar, "Elsim & Mantel Error Bar", "Sample Size", "Average correlation", True, True)
 
 # CASE2: Showing plots in different figures
-save_errorbar(mantel_r_average_of_each_n, mantel_r_lower_error_of_each_n, mantel_r_upper_error_of_each_n, participants_range_for_error_bar, "Mantel Error Bar", "Sample Size", "Average correlation", True, True)
-save_errorbar(elsim_r_average_of_each_n, elsim_r_lower_error_of_each_n, elsim_r_upper_error_of_each_n, participants_range_for_error_bar, "Elsim Error Bar", "Sample Size", "Average correlation", True, True)
+save_errorbar(mantel_r_average_of_each_n, mantel_r_sd_of_each_n, participants_range_for_error_bar, "Mantel Error Bar", "Sample Size", "Average correlation", True, True)
+save_errorbar(elsim_r_average_of_each_n, elsim_r_sd_of_each_n, elsim_r_upper_error_of_each_n, participants_range_for_error_bar, "Elsim Error Bar", "Sample Size", "Average correlation", True, True)
 
 
