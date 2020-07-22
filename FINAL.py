@@ -350,6 +350,6 @@ save_errorbar(elsim_r_average_of_each_n, elsim_r_sd_of_each_n, participants_rang
 
 # CASE2: Showing plots in different figures
 save_errorbar(mantel_r_average_of_each_n, mantel_r_sd_of_each_n, participants_range_for_error_bar, "Mantel Error Bar", "Sample Size", "Average correlation", True, True)
-save_errorbar(elsim_r_average_of_each_n, elsim_r_sd_of_each_n, elsim_r_upper_error_of_each_n, participants_range_for_error_bar, "Elsim Error Bar", "Sample Size", "Average correlation", True, True)
+save_errorbar(elsim_r_average_of_each_n, elsim_r_sd_of_each_n, participants_range_for_error_bar, "Elsim Error Bar", "Sample Size", "Average correlation", True, True)
 
 
