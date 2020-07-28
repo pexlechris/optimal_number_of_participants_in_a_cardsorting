@@ -107,7 +107,7 @@ column_category_label=3 # Column 4 in csv (python starts from 0)
 # Column 3 of csv: card_label
 # Column 4 of csv: category_label
 
-#T he row data of csv is sorted firstly by participant_id and secondly by card_index
+#The row data of csv is sorted firstly by participant_id and secondly by card_index
 all_data = []
 with open(r"travelsite1.csv", encoding="utf8") as csvfile:
     reader = csv.reader(csvfile)
@@ -352,7 +352,7 @@ save_errorbar(mantel_r_average_of_each_n, mantel_r_sd_of_each_n, participants_ra
 save_errorbar(elsim_r_average_of_each_n, elsim_r_sd_of_each_n, participants_range_for_error_bar, "Elsim & Mantel Error Bar", "Sample Size", "Average correlation", True, True)
 
 # CASE2: Showing plots in different figures
-save_errorbar(mantel_r_average_of_each_n, mantel_r_sd_of_each_n, participants_range_for_error_bar, "Mantel Error Bar", "Sample Size", "Average correlation", True, True)
-save_errorbar(elsim_r_average_of_each_n, elsim_r_sd_of_each_n, participants_range_for_error_bar, "Elsim Error Bar", "Sample Size", "Average correlation", True, True)
+save_errorbar(mantel_r_average_of_each_n, mantel_r_sd_of_each_n, participants_range_for_error_bar, "Mantel Test Results", "Sample Size", "Average correlation", True, True)
+save_errorbar(elsim_r_average_of_each_n, elsim_r_sd_of_each_n, participants_range_for_error_bar, "Elsim Test Results", "Sample Size", "Average correlation", True, True)
 
 
