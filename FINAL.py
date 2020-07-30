@@ -349,7 +349,7 @@ for i in participants_range:
 
 # CASE1: Showing of both plots in one figure
 save_errorbar(mantel_r_average_of_each_n, mantel_r_sd_of_each_n, participants_range_for_error_bar, "Mantel", "Sample Size", "Average correlation", False, False)
-save_errorbar(elsim_r_average_of_each_n, elsim_r_sd_of_each_n, participants_range_for_error_bar, "Elsim & Mantel Error Bar", "Sample Size", "Average correlation", True, True)
+save_errorbar(elsim_r_average_of_each_n, elsim_r_sd_of_each_n, participants_range_for_error_bar, "Elsim & Mantel Test Results", "Sample Size", "Average correlation", True, True)
 
 # CASE2: Showing plots in different figures
 save_errorbar(mantel_r_average_of_each_n, mantel_r_sd_of_each_n, participants_range_for_error_bar, "Mantel Test Results", "Sample Size", "Average correlation", True, True)
