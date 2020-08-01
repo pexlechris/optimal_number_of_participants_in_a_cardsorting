@@ -1,4 +1,4 @@
-#ATTENTION: This code needs 1 hour approximately to be executed!
+#ATTENTION: This code needs 5-10 hours approximately to be executed depends on your system power!
 
 import csv
 import random
